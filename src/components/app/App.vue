@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div class="app font-monospace">
     <div class="content">
       <AppInfo/>
       <div class="search-panel">
@@ -7,7 +7,7 @@
         <AppFilter/>
       </div> 
       <MovieList/>   
-      <MovieAddList/>
+      <MovieAddForm/>
     </div>
   </div>
 </template>

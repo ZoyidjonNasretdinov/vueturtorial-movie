@@ -1,5 +1,5 @@
 <template lang="">
-  <h1>Search Panel</h1>
+  <input type="text" class="form-control search-input" placeholder="Kinolarni qidirish"/>
 </template>
 <script>
 export default {
@@ -7,5 +7,12 @@ export default {
 }
 </script>
 <style scoped>
-  
+.search-input {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  padding: 1.5rem;
+  border-radius: 4px;
+  background-color: #fcfaf5;
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.15);
+}
 </style>
