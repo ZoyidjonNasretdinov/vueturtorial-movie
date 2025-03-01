@@ -1,4 +1,4 @@
-<template lang="">
+<template >
   <div class="movie-add-form">
     <h3>Yangi kino qo'shish</h3>
     <form class="add-form d-flex">
@@ -13,7 +13,7 @@ export default {
     
 }
 </script>
-<style lang="">
+<style scoped>
 .movie-add-form {
   margin-top: 2rem;
   padding: 1.5rem;

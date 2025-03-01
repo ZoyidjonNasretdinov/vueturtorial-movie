@@ -6,12 +6,11 @@
   </ul>
 </template>
 <script>
-import MovieListItem from '../movie-list-item/MovieListItem.vue';
-
+import MovieListItem from "@/components/movie-list-item/MovieListItem.vue"
 export default {
   components: {
     MovieListItem,
-  }
+  },
 }
 </script>
 <style scoped>
