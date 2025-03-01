@@ -1,7 +1,7 @@
 <template>  
-  <li class="list-group-item d-flex justify-content-between">
-    <span class="list-group-item-label">Omar</span>
-    <input type="number" class="list-group-item-input" defaultValue="811"/>
+  <li class="list-group-item d-flex justify-content-between" :class="[{like: movie.like}, {favorite: movie.favorite}]">
+    <span class="list-group-item-label">{{ movie.name }}</span>
+    <input type="number" class="list-group-item-input" v-bind:value="movie.viewers"/>
 
     <div class="d-flex justify-content-center align-items-center">
       <button type="button" class="btn-cookie btn-sm">
@@ -18,7 +18,13 @@
 </template>
 <script>
 export default {
-  
+  props: {
+    movie: {
+      type: Object,
+      required: true,
+
+    }
+  }
 }
 </script>
 <style scoped>
@@ -80,8 +86,8 @@ export default {
   transform: translateX(0);
 }
 
-.list-group-item.favourite .list-group-item-label,
-.list-group-item.favourite .list-group-item-input {
+.list-group-item.favorite .list-group-item-label,
+.list-group-item.favorite .list-group-item-input {
   color: #e09f3e;
 }
 </style>

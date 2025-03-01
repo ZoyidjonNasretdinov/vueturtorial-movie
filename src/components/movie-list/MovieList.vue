@@ -1,8 +1,6 @@
 <template lang="">
   <ul class="movie-list list-group">
-    <MovieListItem/>
-    <MovieListItem/>
-    <MovieListItem/>
+    <MovieListItem  v-for="movie in movies" v-bind:movie="movie"/>
   </ul>
 </template>
 <script>
@@ -11,6 +9,30 @@ export default {
   components: {
     MovieListItem,
   },
+  data() {
+    return {
+      movies: [
+        { 
+          name: "Avengers",
+          viewers: 901,
+          favorite: false, 
+          like: true,
+        },
+        { 
+          name: "Captain America", 
+          viewers: 902, 
+          favorite: true, 
+          like: false,
+        },
+        { 
+          name: "Spider-Man", 
+          viewers: 903, 
+          favorite: false,
+          like: false, 
+        }
+      ],
+    };
+  }
 }
 </script>
 <style scoped>
