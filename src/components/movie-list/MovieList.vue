@@ -9,30 +9,13 @@ export default {
   components: {
     MovieListItem,
   },
-  data() {
-    return {
-      movies: [
-        { 
-          name: "Avengers",
-          viewers: 901,
-          favorite: false, 
-          like: true,
-        },
-        { 
-          name: "Captain America", 
-          viewers: 902, 
-          favorite: true, 
-          like: false,
-        },
-        { 
-          name: "Spider-Man", 
-          viewers: 903, 
-          favorite: false,
-          like: false, 
-        }
-      ],
-    };
+  props: {
+    movies: {
+      type: Array,
+      required: true,
+    },
   }
+
 }
 </script>
 <style scoped>
