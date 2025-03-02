@@ -7,7 +7,7 @@
         <AppFilter/>
       </div> 
       <MovieList :movies="movies"/>   
-      <MovieAddForm/>
+      <MovieAddForm @createMovie="createMovie"/>
     </div>
   </div>
 </template>
@@ -49,6 +49,11 @@ export default {
         }
       ],
     };
+  },
+  methods: {
+    createMovie(item) {
+      this.movies.push(item)
+    }
   }
 }
 </script>
