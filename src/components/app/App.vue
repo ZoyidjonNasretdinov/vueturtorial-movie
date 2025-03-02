@@ -34,18 +34,21 @@ export default {
           viewers: 901,
           favorite: false, 
           like: true,
+          id: 1,
         },
         { 
           name: "Captain America", 
           viewers: 902, 
           favorite: true, 
           like: false,
+          id: 2,
         },
         { 
           name: "Spider-Man", 
           viewers: 903, 
           favorite: false,
           like: false, 
+          id: 3,
         }
       ],
     };
