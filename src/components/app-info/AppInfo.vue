@@ -5,7 +5,7 @@
   </div>
 </template>
 
-
+<!-- learning vue dev tools -->
 <script>
 export default {
   props: {
