@@ -18,6 +18,7 @@ export default {
   },
   methods: {
     addMovie() {
+      if(!this.name || !this.favorite) return;
       const newMovie = {
         name: this.name,
         viewers: this.viewers,

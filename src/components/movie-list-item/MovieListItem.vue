@@ -8,7 +8,7 @@
         <i class="fas fa-cookie"></i>
       </button>
 
-      <button type="button" class="btn-trash btn-sm">
+      <button type="button" class="btn-trash btn-sm" @click="$emit('onRemove', movie.id)">
         <i class="fas fa-trash"></i>
       </button>
 
