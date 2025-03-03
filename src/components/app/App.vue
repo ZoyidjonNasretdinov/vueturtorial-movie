@@ -1,12 +1,26 @@
 <template>
   <div class="app font-monospace">
     <div class="content">
-      <AppInfo :allMoviesCount="movies.length" :favoriteMovieCount="movies.filter(c => c.favorite).length"/>
+      <!-- Movie Info -->
+      <AppInfo 
+        :allMoviesCount="movies.length" 
+        :favoriteMovieCount="movies.filter(c => c.favorite).length"
+      />
+      
+      <!-- Search & Filter Section -->
       <div class="search-panel">
-        <SearchPanel/>
-        <AppFilter/>
+        <SearchPanel @updateTerm="updateTermHandler"/>
+        <AppFilter name="filter"/>
       </div> 
-      <MovieList :movies="movies" @onToggle="onToggleHandler" @onRemove="onRemoveHandler"/>   
+
+      <!-- Movie List -->
+      <MovieList 
+        :movies="filteredMovies" 
+        @onToggle="onToggleHandler" 
+        @onRemove="onRemoveHandler"
+      />   
+
+      <!-- Add New Movie -->
       <MovieAddForm @createMovie="createMovie"/>
     </div>
   </div>
@@ -18,8 +32,9 @@ import AppInfo from '../app-info/AppInfo.vue';
 import MovieAddForm from '../movie-add-form/MovieAddForm.vue';
 import MovieList from '../movie-list/MovieList.vue';
 import SearchPanel from '../search-panel/SearchPanel.vue';
+
 export default {
-  components : {
+  components: {
     AppInfo,
     SearchPanel,
     AppFilter,
@@ -29,47 +44,40 @@ export default {
   data() {
     return {
       movies: [
-        { 
-          name: "Avengers",
-          viewers: 901,
-          favorite: false, 
-          like: true,
-          id: 1,
-        },
-        { 
-          name: "Captain America", 
-          viewers: 902, 
-          favorite: true, 
-          like: false,
-          id: 2,
-        },
-        { 
-          name: "Spider-Man", 
-          viewers: 903, 
-          favorite: false,
-          like: false, 
-          id: 3,
-        }
+        { name: "Avengers", viewers: 901, favorite: false, like: true, id: 1 },
+        { name: "Captain America", viewers: 902, favorite: true, like: false, id: 2 },
+        { name: "Spider-Man", viewers: 903, favorite: false, like: false, id: 3 }
       ],
+      term: '',
     };
+  },
+  computed: {
+    filteredMovies() {
+      if (!this.term) {
+        return this.movies;
+      }
+      return this.movies.filter(movie => 
+        movie.name.toLowerCase().includes(this.term.toLowerCase())
+      );
+    }
   },
   methods: {
     createMovie(item) {
-      this.movies.push(item)
+      this.movies.push(item);
     },
-    onToggleHandler({id, prop}) {
-      this.movies = this.movies.map(item => {
-        if(item.id == id) {
-          return {...item, [prop]: !item[prop]};
-        }
-        return item;
-      });
+    onToggleHandler({ id, prop }) {
+      this.movies = this.movies.map(item => 
+        item.id === id ? { ...item, [prop]: !item[prop] } : item
+      );
     },
     onRemoveHandler(id) {
-      this.movies = this.movies.filter(c => c.id !== id)
+      this.movies = this.movies.filter(movie => movie.id !== id);
+    },
+    updateTermHandler(term) {
+      this.term = term; // Update the search term
     }
   }
-}
+};
 </script>
 
 <style>
