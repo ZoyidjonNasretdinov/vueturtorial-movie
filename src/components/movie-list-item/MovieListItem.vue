@@ -1,10 +1,10 @@
 <template>  
-  <li class="list-group-item d-flex justify-content-between" :class="[{like: movie.like}, {favorite: movie.favorite}]" @click="onLike">
-    <span class="list-group-item-label">{{ movie.name }}</span>
+  <li class="list-group-item d-flex justify-content-between" :class="[{like: movie.like}, {favorite: movie.favorite}]">
+    <span @click="$emit('onToggle', {id : movie.id, prop: 'like'})" class="list-group-item-label">{{ movie.name }}</span>
     <input type="number" class="list-group-item-input" v-bind:value="movie.viewers"/>
 
     <div class="d-flex justify-content-center align-items-center">
-      <button type="button" class="btn-cookie btn-sm" >
+      <button type="button" class="btn-cookie btn-sm" @click="$emit('onToggle', {id : movie.id, prop: 'favorite'})" >
         <i class="fas fa-cookie"></i>
       </button>
 
@@ -28,6 +28,9 @@ export default {
   methods: {
     onLike() {
       this.$emit('onLike', this.movie.id)
+    },
+    onFavorite() {
+      this.$emit('onFavorite', this.movie.id)
     }
   }
 }
