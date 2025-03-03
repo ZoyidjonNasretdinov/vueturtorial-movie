@@ -10,12 +10,12 @@
       <!-- Search & Filter Section -->
       <div class="search-panel">
         <SearchPanel @updateTerm="updateTermHandler"/>
-        <AppFilter name="filter"/>
+        <AppFilter @updateFilter="updateFilterHandler"/> <!-- 🔥 Fixed event listener -->
       </div> 
 
       <!-- Movie List -->
       <MovieList 
-        :movies="filteredMovies" 
+        :movies="onFilterHandler(filteredMovies, filter)" 
         @onToggle="onToggleHandler" 
         @onRemove="onRemoveHandler"
       />   
@@ -49,6 +49,7 @@ export default {
         { name: "Spider-Man", viewers: 903, favorite: false, like: false, id: 3 }
       ],
       term: '',
+      filter: 'all', // Default filter state
     };
   },
   computed: {
@@ -75,6 +76,19 @@ export default {
     },
     updateTermHandler(term) {
       this.term = term; // Update the search term
+    },
+    onFilterHandler(arr, filter) {
+      switch (filter) {
+        case "popular":
+          return arr.filter(c => c.favorite);
+        case "mostViewers":
+          return arr.filter(c => c.viewers > 500);
+        default:
+          return arr;
+      }
+    },
+    updateFilterHandler(filter) {
+      this.filter = filter; // Update filter state when user selects a filter
     }
   }
 };
